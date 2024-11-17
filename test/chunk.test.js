@@ -39,6 +39,11 @@ describe('Testing chunk.js', () => {
         expect(result2).to.deep.equal([]);  
     })
 
+    it('Should handle chunk length which is not an integer', () => {
+        const result = chunk(['a', 'b', 'c', 'd'], 2.5);
+        expect(result).to.deep.equal([['a', 'b'], ['c', 'd']]); 
+    })
+
     it('Should handle an empty array', () => {
         const result = chunk([], 3);
         expect(result).to.deep.equal([]); 

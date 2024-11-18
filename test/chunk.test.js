@@ -59,4 +59,10 @@ describe('Testing chunk.js', () => {
         expect(result).to.deep.equal([]); 
     })
 
+    it('Should handle an undefined chunk size', () => {
+        const result = chunk(['a', 'b', 'c', 'd'], null);
+        expect(result).to.deep.equal([]); 
+    })
+
+
 })

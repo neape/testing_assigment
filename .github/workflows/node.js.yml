@@ -20,7 +20,3 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm run test
-      - name: Upload coverage
-        uses: coverallsapp/github-action@master
-        with:
-          token: ${{ secrets.COVERALLS_TOKEN }}

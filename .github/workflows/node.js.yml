@@ -38,5 +38,5 @@ jobs:
       - name: Run coveralls
         run: npm run coveralls
         env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
           COVERALLS_DEBUG: "1"

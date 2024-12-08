@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha test/**/*.test.js",
+    "test": "c8 --reporter=lcov mocha",
     "coveralls": "c8 report --reporter=text-lcov | coveralls"
   },
   "author": "",

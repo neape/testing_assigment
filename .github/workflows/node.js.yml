@@ -16,18 +16,27 @@ jobs:
     strategy:
       matrix:
         node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+
       - run: npm ci
+
       - run: npm run build --if-present
+
       - run: npm test
-      - run: npm run coveralls
+
+      - name: Check coverage report
+        run: ls -la coverage/lcov.info
+
+      - name: Run coveralls
+        run: npm run coveralls
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          COVERALLS_DEBUG: "1"

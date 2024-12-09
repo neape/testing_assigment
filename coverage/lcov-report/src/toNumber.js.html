@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/memoize.js</title>
+    <title>Code coverage report for src/toNumber.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> memoize.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> toNumber.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.87% </span>
+                <span class="strong">89.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>62/64</span>
+                <span class='fraction'>58/65</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55.55% </span>
+                <span class="strong">61.53% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/9</span>
+                <span class='fraction'>8/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.87% </span>
+                <span class="strong">89.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>62/64</span>
+                <span class='fraction'>58/65</span>
             </div>
         
             
@@ -127,7 +127,8 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -170,91 +171,93 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * Creates a function that memoizes the result of `func`. If `resolver` is
- * provided, it determines the cache key for storing the result based on the
- * arguments provided to the memoized function. By default, the first argument
- * provided to the memoized function is used as the map cache key. The `func`
- * is invoked with the `this` binding of the memoized function.
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import isObject from './isObject.js'
+import isSymbol from './isSymbol.js'
+&nbsp;
+/** Used as references for various `Number` constants. */
+const NAN = 0 / 0
+&nbsp;
+/** Used to match leading and trailing whitespace. */
+const reTrim = /^\s+|\s+$/g
+&nbsp;
+/** Used to detect bad signed hexadecimal string values. */
+const reIsBadHex = /^[-+]0x[0-9a-f]+$/i
+&nbsp;
+/** Used to detect binary string values. */
+const reIsBinary = /^0b[01]+$/i
+&nbsp;
+/** Used to detect octal string values. */
+const reIsOctal = /^0o[0-7]+$/i
+&nbsp;
+/** Built-in method references without a dependency on `root`. */
+const freeParseInt = parseInt
+&nbsp;
+/**
+ * Converts `value` to a number.
  *
- * **Note:** The cache is exposed as the `cache` property on the memoized
- * function. Its creation may be customized by replacing the `memoize.Cache`
- * constructor with one whose instances implement the
- * [`Map`](http://ecma-international.org/ecma-262/7.0/#sec-properties-of-the-map-prototype-object)
- * method interface of `clear`, `delete`, `get`, `has`, and `set`.
- *
- * @since 0.1.0
- * @category Function
- * @param {Function} func The function to have its output memoized.
- * @param {Function} [resolver] The function to resolve the cache key.
- * @returns {Function} Returns the new memoized function.
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @see isInteger, toInteger, isNumber
  * @example
  *
- * const object = { 'a': 1, 'b': 2 }
- * const other = { 'c': 3, 'd': 4 }
+ * toNumber(3.2)
+ * // =&gt; 3.2
  *
- * const values = memoize(values)
- * values(object)
- * // =&gt; [1, 2]
+ * toNumber(Number.MIN_VALUE)
+ * // =&gt; 5e-324
  *
- * values(other)
- * // =&gt; [3, 4]
+ * toNumber(Infinity)
+ * // =&gt; Infinity
  *
- * object.a = 2
- * values(object)
- * // =&gt; [1, 2]
- *
- * // Modify the result cache.
- * values.cache.set(object, ['a', 'b'])
- * values(object)
- * // =&gt; ['a', 'b']
- *
- * // Replace `memoize.Cache`.
- * memoize.Cache = WeakMap
+ * toNumber('3.2')
+ * // =&gt; 3.2
  */
-function memoize(func, resolver) {
-  if (typeof func !== 'function' || (resolver != null &amp;&amp; typeof resolver !== 'function')) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    throw new TypeError('Expected a function')</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-  const memoized = function(...args) {
-    const key = resolver ? resolver.apply(this, args) <span class="branch-0 cbranch-no" title="branch not covered" >: args[0]</span>
-    const cache = memoized.cache
-&nbsp;
-    if (cache.has(key)) {
-      return cache.get(key)
-    }
-    const result = func.apply(this, args)
-    memoized.cache = cache.set(key, result) <span class="branch-0 cbranch-no" title="branch not covered" >|| cache</span>
-    return result
+function toNumber(value) {
+  if (typeof value === 'number') {
+    return value
   }
-  memoized.cache = new (memoize.Cache <span class="branch-0 cbranch-no" title="branch not covered" >|| Map)</span>
-  return memoized
+  if (isSymbol(value)) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return NAN</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+  if (isObject(value)) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    const other = typeof value.valueOf === 'function' ? value.valueOf() : value</span>
+<span class="cstat-no" title="statement not covered" >    value = isObject(other) ? `${other}` : other</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+  if (typeof value !== 'string') <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return value === 0 ? value : +value</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+  value = value.replace(reTrim, '')
+  const isBinary = reIsBinary.test(value)
+  return (isBinary || reIsOctal.test(value))
+<span class="branch-0 cbranch-no" title="branch not covered" >    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)</span>
+    : (reIsBadHex.test(value) <span class="branch-0 cbranch-no" title="branch not covered" >? NAN </span>: +value)
 }
 &nbsp;
-memoize.Cache = Map
-&nbsp;
-export default memoize
+export default toNumber
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

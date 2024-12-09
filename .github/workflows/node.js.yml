@@ -36,6 +36,7 @@ jobs:
         run: ls -la coverage/lcov.info
 
       - name: Run coveralls
+        if: always()
         run: npm run coveralls
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}

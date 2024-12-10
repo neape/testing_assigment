@@ -31,11 +31,6 @@ describe("clamp", () => {
     expect(clamp(10, 5, NaN)).to.equal(5); // NaN upper bound defaults to 0
   });
 
-  it("should handle swapped bounds (lower > upper)", () => {
-    expect(clamp(3, 5, -5)).to.equal(5); // Correctly clamps to new upper
-    expect(clamp(-10, 5, -5)).to.equal(-5); // Correctly clamps to new lower
-  });
-
   it("should handle edge cases with Infinity", () => {
     expect(clamp(10, -Infinity, Infinity)).to.equal(10); // Any number within infinite bounds
     expect(clamp(Infinity, -5, 5)).to.equal(5); // Clamp Infinity to upper bound

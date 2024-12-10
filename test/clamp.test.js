@@ -22,7 +22,7 @@ describe("clamp", () => {
 
   it("should handle non-numeric inputs for `number`", () => {
     expect(clamp("10", -5, 5)).to.equal(5);
-    expect(clamp(NaN, -5, 5)).to.equal(0); 
+    expect(clamp(NaN, -5, 5)).to.equal(0);
   });
 
   it("should handle non-numeric inputs for `lower` and `upper`", () => {
@@ -41,4 +41,5 @@ describe("clamp", () => {
     expect(clamp(10, 0, 0)).to.equal(0);
     expect(clamp(-10, 0, 5)).to.equal(0);
     expect(clamp(10, -5, 0)).to.equal(0);
+  });
 });

@@ -12,7 +12,7 @@
  * // => [1, 2, 3]
  */
 function compact(array) {
-  let resIndex = 0;
+  let resIndex = -1;
   const result = [];
 
   for (const value of array) {

@@ -22,12 +22,8 @@ function clamp(number, lower, upper) {
   lower = lower === lower ? lower : 0;
   upper = upper === upper ? upper : 0;
   if (number === number) {
-    if (number < lower) {
-      return lower;
-    }
-    if (number > upper) {
-      return upper;
-    }
+    number = number >= upper ? number : upper;
+    number = number <= lower ? number : lower;
   }
   return number;
 }
